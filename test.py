@@ -3,10 +3,19 @@ import requests
 
 BASE="http://127.0.0.1:5000/"
 
-response = requests.put(BASE + "video/1", {"likes": 10, "name": "Gpoorv", "views": 100010})
-print(response.json())
+data = [{"likes": 10, "name": "Joe", "views": 1000}, 
+        {"likes": 80000, "name": "How to make a REST API", "views": 1000000}, 
+        {"likes": 24, "name": "Apoorv", "views": 11110}]
+
+for i in range(len(data)):
+    response = requests.put(BASE + "video/" + str(i), data[i])
+    print(response.json())
+
+input()
+response = requests.delete(BASE + "video/0")
+print(response)
 
 input()
 
-response = requests.get(BASE + "video/7")
+response = requests.get(BASE + "video/2")
 print(response.json())
